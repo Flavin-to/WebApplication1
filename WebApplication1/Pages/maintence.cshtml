@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+    <form id="loginForm" method="post">
+        <div class="form-group">
+            <label for="password">Digite a senha para desligar o host:</label>
+            <input type="password" id="password" name="password" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+    <p id="errorMessage" class="text-danger" style="display:none;">Senha incorreta, tente novamente.</p>
+</div>
+
+@section Scripts {
+    <script>
+        // Manipula o envio do formulário
+        document.getElementById("loginForm").onsubmit = async function(event) {
+            event.preventDefault(); // Impede o envio do formulário padrão
+
+            // Obtém a senha digitada
+            var password = document.getElementById("password").value;
+
+            // Verifica se a senha está correta
+            if (password === "123") { // Troque pela senha desejada
+                try {
+                    // Envia a requisição para o servidor para desligar o host
+                    let response = await fetch('/api/shutdown', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    });
+
+                    if (response.ok) {
+                        alert("O host será desligado.");
+                    } else {
+                        alert("Falha ao tentar desligar o host.");
+                    }
+                } catch (error) {
+                    alert("Erro ao tentar se conectar ao servidor.");
+                }
+            } else {
+                // Senha incorreta
+                document.getElementById("errorMessage").style.display = 'block';
+            }
+        };
+    </script>
+}
