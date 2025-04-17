@@ -1,0 +1,27 @@
+﻿.hero {
+    background-color: #0d6efd;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features {
+    padding: 40px 20px;
+}
+
+    .features .col {
+        margin-bottom: 30px;
+    }
+
+.cta {
+    background-color: #ffc107;
+    padding: 40px 20px;
+    text-align: center;
+    color: #212529;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #e9ecef;
+}
